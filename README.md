@@ -1,7 +1,12 @@
 # `port-create(1)`
 Generate MacPorts Portfile template
 
-## TODO
+## Usage
+```
+./port-create.tcl -url URL [-name <name>] [-version <version>]
+```
+
+## Todo
 - [x] Add [-name <name>] and [-version <version>] options
 - [ ] Generate tarball checksum, add [-no-fetch] option
 - [ ] Support Github-flavoured tarbarll URL, i.e.,

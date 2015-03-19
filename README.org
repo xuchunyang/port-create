@@ -1,0 +1,68 @@
+#+Title: port-create(1)
+#+OPTIONS: toc:nil num:t ^:nil
+
+Generate MacPorts Portfile template
+
+* Synopsis
+#+BEGIN_SRC sh
+./port-create.tcl -url URL [-name <name>] [-version <version>]
+#+END_SRC
+
+Currently, only a tarball URL is accepted.
+
+* Todo
+
+- [X] Add [-name <name>] and [-version <version>] options
+- [ ] Generate tarball checksum, add [-no-fetch] option
+- [ ] Support Github-flavoured tarbarll URL, for example, https://github.com/magit/magit/archive/1.2.2.tar.gz
+- [ ] Support plain Github homepage URL, for example, https://github.com/ggreer/the_silver_searcher
+
+* Ideas
+
+The following ideas are under consideration. I need to to confirm the necessity
+and possibility.
+
+** Intergrate with cpan2port and pypi2port
+I still don't how to use these two tools. I'll investigate them.
+
+** Write more tools to generate Portfile for other package manager
+#+Caption: Programming Language (or tools) and their package manager
+| Programming Language | Package Manager |
+|----------------------+-----------------|
+| javascript           | npm             |
+| lua                  | luarocks        |
+| ocaml                | OPAM            |
+| haskell              | cabal           |
+| Rust                 | Cargo           |
+
+** Convert Homebrew formula to Portfile template
+A Homebrew formula is ruby script. I don't know ruby, so for now, the only way
+for me is using Regexp.
+
+Pacman PKGBUILD used by Arch Linux is also a possible source, PKGBUILD is written
+in Makefile, it looks simple and well-documented. Other formats such as .deb and
+.rpm is relatively complicated.
+
+** Detect license, build toolchain according to some spcific files
+
+| Input                         | Portfile variable         |
+|-------------------------------+---------------------------|
+| $USER $EMAIL                  | maintainers               |
+|-------------------------------+---------------------------|
+| LICENSE file                  | license                   |
+|-------------------------------+---------------------------|
+| +configure.ac / +configure.in | use_autoconf              |
+| -configure                    |                           |
+|-------------------------------+---------------------------|
+| Makefile.am -Makefile.in      | use_automake?             |
+|-------------------------------+---------------------------|
+| CMakeLists.txt                | PortGroup                 |
+|-------------------------------+---------------------------|
+| Makefile                      | use_configure             |
+
+** Check if port is already exist before create a new one
+Don't allow creating existing port, unless --force is specified.
+
+** Add shorthands for searching port on other Package Managers' site
+for example, invoke =port-create --homebrew emacs= to search "emacs" in
+Homebrew's formulas in web broswer.

@@ -1,0 +1,3 @@
+[submodule "macports-contrib"]
+	path = macports-contrib
+	url = git://git.macports.org/macports/contrib.git

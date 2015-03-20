@@ -19,13 +19,14 @@ Currently, only a tarball URL is accepted.
 
 * Ideas
 
-The following ideas are under consideration. I need to to confirm the necessity
-and possibility.
+The following ideas are under consideration. I need to to confirm both the
+necessity and possibility.
 
 ** Intergrate with cpan2port and pypi2port
-I still don't how to use these two tools. I'll investigate them.
+Generalize their command line interface and call them from port-create. Add
+=--cpan= and =--pypi= options.
 
-** Write more tools to generate Portfile for other package manager
+** Write more tools to generate Portfile for other package managers
 #+Caption: Programming Language (or tools) and their package manager
 | Programming Language | Package Manager |
 |----------------------+-----------------|
@@ -34,6 +35,7 @@ I still don't how to use these two tools. I'll investigate them.
 | ocaml                | OPAM            |
 | haskell              | cabal           |
 | Rust                 | Cargo           |
+| Ruby                 | Gem             |
 
 ** Convert Homebrew formula to Portfile template
 A Homebrew formula is ruby script. I don't know ruby, so for now, the only way
@@ -61,7 +63,7 @@ in Makefile, it looks simple and well-documented. Other formats such as .deb and
 | Makefile                      | use_configure             |
 
 ** Check if port is already exist before create a new one
-Don't allow creating existing port, unless --force is specified.
+Don't allow creating existing port, unless =--force= is specified.
 
 ** Add shorthands for searching port on other Package Managers' site
 for example, invoke =port-create --homebrew emacs= to search "emacs" in
